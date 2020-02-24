@@ -12,7 +12,7 @@
 		"IIS Express": {
 			"commandName": "IISExpress",
 			"launchBrowser": true,
-			"launchUrl": "Carteira?nomeInvestidor=Bruno&nomeCarteira=Modal&ativos=QAGR11,SCPF11",
+			"launchUrl": "app/index.html",
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Development"
 			}
@@ -20,7 +20,8 @@
 		"PlenoSoft.InvestFacil.WebApp": {
 			"commandName": "Project",
 			"launchBrowser": true,
-			"launchUrl": "Carteira?nomeInvestidor=Bruno&nomeCarteira=Modal&ativos=QAGR11,SCPF11",
+			"launchUrl": "app/index.html",
+			/* "launchUrl": "Carteira?nomeInvestidor=Bruno&nomeCarteira=Modal&ativos=QAGR11,SCPF11", */
 			"applicationUrl": "https://localhost:5001;http://localhost:5000",
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Development"

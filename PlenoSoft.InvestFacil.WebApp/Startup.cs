@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace PlenoSoft.InvestFacil.WebApp
 {
@@ -34,6 +37,12 @@ namespace PlenoSoft.InvestFacil.WebApp
 			app.UseRouting();
 
 			app.UseAuthorization();
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "app")),
+				RequestPath = "/app"
+			});
 
 			app.UseEndpoints(endpoints =>
 			{

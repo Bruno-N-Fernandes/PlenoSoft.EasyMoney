@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Fundos</title>
+	<style>
+		fieldset > fieldset {
+			border: none;
+			text-align: end;
+		}
+		fieldset > fieldset > label {
+			width: 150px;
+			display: inline-block;
+		}
+		fieldset > fieldset > input, select {
+			width: 350px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<fieldset>
+		<fieldset>
+			<label for="ativo">Ativo:</label>
+			<input id="ativo" name="ativo" type="text" />
+		</fieldset>
+		<fieldset>
+			<label for="tipo">Tipo:</label>
+			<select id="tipo" name="tipo">
+				<option value="Compra">Compra</option>
+				<option value="Venda">Venda</option>
+				<option value="Rendimento">Rendimento</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<label for="Quantidade">Quantidade:</label>
+			<input id="Quantidade" name="Quantidade" type="number" />
+		</fieldset>
+		<fieldset>
+			<label for="data">Data:</label>
+			<input id="data" name="data" type="date" />
+		</fieldset>
+		<fieldset>
+			<label for="valorUnitario">Valor Unitário:</label>
+			<input id="valorUnitario" name="valorUnitario" type="number" />
+		</fieldset>
+		<fieldset>
+			<label for="taxasTotais">Taxas Totais:</label>
+			<input id="taxasTotais" name="taxasTotais" type="text" />
+		</fieldset>
+
+	</fieldset>
+</body>
+</html>
