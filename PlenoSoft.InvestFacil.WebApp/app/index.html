@@ -4,51 +4,88 @@
 	<meta charset="utf-8" />
 	<title>Fundos</title>
 	<style>
-		fieldset > fieldset {
+		form > fieldset > fieldset {
 			border: none;
 			text-align: end;
 		}
-		fieldset > fieldset > label {
+		form > fieldset > fieldset > label {
 			width: 150px;
 			display: inline-block;
 		}
-		fieldset > fieldset > input, select {
+		form > fieldset > fieldset > input, select {
 			width: 350px;
 			display: inline-block;
 		}
 	</style>
 </head>
 <body>
-	<fieldset>
+	<form id="formAtivo">
 		<fieldset>
-			<label for="ativo">Ativo:</label>
-			<input id="ativo" name="ativo" type="text" />
+			<fieldset>
+				<label for="ativo">Ativo:</label>
+				<input id="ativo" name="ativo" type="text" />
+			</fieldset>
+			<fieldset>
+				<label for="tipo">Tipo:</label>
+				<select id="tipo" name="tipo">
+					<option value="Compra">Compra</option>
+					<option value="Venda">Venda</option>
+					<option value="Rendimento">Rendimento</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<label for="Quantidade">Quantidade:</label>
+				<input id="Quantidade" name="Quantidade" type="number" />
+			</fieldset>
+			<fieldset>
+				<label for="data">Data:</label>
+				<input id="data" name="data" type="date" />
+			</fieldset>
+			<fieldset>
+				<label for="valorUnitario">Valor Unitário:</label>
+				<input id="valorUnitario" name="valorUnitario" type="number" />
+			</fieldset>
+			<fieldset>
+				<label for="taxasTotais">Taxas Totais:</label>
+				<input id="taxasTotais" name="taxasTotais" type="text" />
+			</fieldset>
+			<fieldset>
+				<input type="submit" value="Enviar" />
+			</fieldset>
 		</fieldset>
-		<fieldset>
-			<label for="tipo">Tipo:</label>
-			<select id="tipo" name="tipo">
-				<option value="Compra">Compra</option>
-				<option value="Venda">Venda</option>
-				<option value="Rendimento">Rendimento</option>
-			</select>
-		</fieldset>
-		<fieldset>
-			<label for="Quantidade">Quantidade:</label>
-			<input id="Quantidade" name="Quantidade" type="number" />
-		</fieldset>
-		<fieldset>
-			<label for="data">Data:</label>
-			<input id="data" name="data" type="date" />
-		</fieldset>
-		<fieldset>
-			<label for="valorUnitario">Valor Unitário:</label>
-			<input id="valorUnitario" name="valorUnitario" type="number" />
-		</fieldset>
-		<fieldset>
-			<label for="taxasTotais">Taxas Totais:</label>
-			<input id="taxasTotais" name="taxasTotais" type="text" />
-		</fieldset>
+	</form>
 
-	</fieldset>
+	<script type="text/javascript">
+		class Test {
+			constructor(element) {
+				this.element = element;
+			}
+			HelloWorld() {
+				this.element.value = "Hello World";
+			}
+		}
+		var formAtivo = document.getElementById("formAtivo");
+		formAtivo.addEventListener("submit", e => {
+			e.preventDefault();
+
+			const formData = new FormData(e.target);
+			const searchParams = new URLSearchParams();
+			for (const pair of formData) {
+				searchParams.append(pair[0], pair[1]);
+			}
+			
+			console.log(formData);
+			console.log(formData.toString());
+			console.log(JSON.stringify(formData));
+
+			console.log(searchParams);
+			console.log(searchParams.toString());
+			console.log(JSON.stringify(searchParams));
+		});
+
+		var ativo = document.getElementById("ativo");
+		var test = new Test(ativo);
+		test.HelloWorld();
+	</script>
 </body>
 </html>
