@@ -1,4 +1,5 @@
 ﻿using PlenoSoft.InvestFacil.Domain.Abstracao;
+using System;
 using System.Linq;
 
 namespace PlenoSoft.InvestFacil.Domain.Entidades
@@ -6,6 +7,8 @@ namespace PlenoSoft.InvestFacil.Domain.Entidades
 	public class Investidor : Pessoa
 	{
 		public ActionList<Carteira> Carteiras { get; set; }
+		public DateTime DataHoraInclusao { get; set; }
+		public DateTime UltimaAlteracao { get; set; }
 
 		public Investidor()
 		{

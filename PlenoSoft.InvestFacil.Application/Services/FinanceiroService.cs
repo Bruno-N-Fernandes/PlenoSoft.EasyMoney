@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlenoSoft.InvestFacil.Application.Services
 {
-	public static class FinanceiroService
+	public class FinanceiroService
 	{
 		public static readonly IFormatProvider pt_BR = new CultureInfo("pt-BR");
 
@@ -22,11 +22,11 @@ namespace PlenoSoft.InvestFacil.Application.Services
 			}
 		}
 
-		public async static Task<decimal?> ObterValorAsync(string ticker)
+		public async static Task<decimal?> ObterValorAsync(string papel)
 		{
 			try
 			{
-				var url = "https://www.fundsexplorer.com.br/funds/" + ticker;
+				var url = "https://www.fundsexplorer.com.br/funds/" + papel;
 				var httpClient = new HttpClient();
 				var response = await httpClient.GetAsync(url);
 				var html = await response.Content.ReadAsStringAsync();
@@ -41,6 +41,20 @@ namespace PlenoSoft.InvestFacil.Application.Services
 			catch
 			{
 				return null;
+			}
+		}
+
+		public async static Task<decimal?> ObterCotacoesAsync(string papel)
+		{
+			try
+			{
+				return await Task.Run(() => (decimal?)null);
+				//https://fiis.com.br/knri/cotacoes/?periodo=12+months
+				//https://chart.fundsexplorer.com.br/scpf/cotacoes/?periodo=12+months
+			}
+			catch
+			{
+				return await Task.Run(() => (decimal?)null);
 			}
 		}
 	}

@@ -12,44 +12,48 @@ namespace PlenoSoft.InvestFacil.Domain.Entidades
 
 		[JsonIgnore]
 		public Investidor Investidor { get; internal set; }
+		public long? InvestidorId => Investidor?.Id;
 
-		public ActionList<Lancamento> Lancamentos { get; set; }
+
+		public ActionList<Movimento> Lancamentos { get; set; }
+		public DateTime UltimaAlteracao { get; set; }
+		public DateTime DataHoraInclusao { get; set; }
 
 		public Carteira()
 		{
-			Lancamentos = new ActionList<Lancamento>(c => c.Carteira = this, c => c.Carteira = null);
+			Lancamentos = new ActionList<Movimento>(c => c.Carteira = this, c => c.Carteira = null);
 		}
 
-		public Lancamento Comprar(int quantidade, Ativo ativo, decimal valorUnitario, decimal taxas = 0.0M)
+		public Movimento Comprar(int quantidade, AtivoFinanceiro ativo, decimal valorUnitario, DateTime? data, decimal taxas = 0.0M)
 		{
-			return NovoLancamento(quantidade, ativo, valorUnitario, taxas, Lancamento.Enum.Compra);
+			return NovoLancamento(quantidade, ativo, valorUnitario, data, taxas, Movimento.Enum.Compra);
 		}
 
-		public Lancamento Vender(int quantidade, Ativo ativo, decimal valorUnitario, decimal taxas = 0.0M)
+		public Movimento Vender(int quantidade, AtivoFinanceiro ativo, decimal valorUnitario, DateTime? data, decimal taxas = 0.0M)
 		{
-			return NovoLancamento(-quantidade, ativo, valorUnitario, taxas, Lancamento.Enum.Venda);
+			return NovoLancamento(-quantidade, ativo, valorUnitario, data, taxas, Movimento.Enum.Venda);
 		}
 
-		public Lancamento Rentabilizar(int quantidade, Ativo ativo, decimal valorUnitario, decimal taxas = 0.0M)
+		public Movimento Rentabilizar(int quantidade, AtivoFinanceiro ativo, decimal valorUnitario, DateTime? data, decimal taxas = 0.0M)
 		{
-			return NovoLancamento(-quantidade, ativo, valorUnitario, taxas, Lancamento.Enum.Rendimento);
+			return NovoLancamento(quantidade, ativo, valorUnitario, data, taxas, Movimento.Enum.Rendimento);
 		}
 
-		private Lancamento NovoLancamento(int quantidade, Ativo ativo, decimal valorUnitario, decimal taxas, Lancamento.Enum tipo)
+		private Movimento NovoLancamento(int quantidade, AtivoFinanceiro ativo, decimal valorUnitario, DateTime? data, decimal taxas, Movimento.Enum tipo)
 		{
-			var lancamento = new Lancamento { Ativo = ativo, Data = DateTime.UtcNow, Quantidade = quantidade, Taxas = taxas, Tipo = tipo, ValorUnitario = valorUnitario };
+			var lancamento = new Movimento { AtivoFinanceiro = ativo, Data = data ?? DateTime.UtcNow, Quantidade = quantidade, Taxas = taxas, TipoMovimento = tipo, PrecoUnitario = valorUnitario };
 			return Movimentar(lancamento);
 		}
 
-		public Lancamento Movimentar(Lancamento lancamento)
+		public Movimento Movimentar(Movimento lancamento)
 		{
 			return Lancamentos.Add(lancamento);
 		}
 
 		public IEnumerable<Estatistica> ObterEstatisticas(params string[] ativos)
 		{
-			var lancamentos = (ativos?.Any()).GetValueOrDefault() ? Lancamentos.Where(l => ativos.Contains(l.Ticker)) : Lancamentos;
-			var lancamentosAgrupados = lancamentos.GroupBy(l => l.Ticker);
+			var lancamentos = (ativos?.Any()).GetValueOrDefault() ? Lancamentos.Where(l => ativos.Contains(l.Papel)) : Lancamentos;
+			var lancamentosAgrupados = lancamentos.GroupBy(l => l.Papel);
 			return lancamentosAgrupados.Select(g => new Estatistica(g.Key, g));
 		}
 	}
