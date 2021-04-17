@@ -19,6 +19,8 @@ namespace PlenoSoft.InvestFacil.WebApp.Controllers
 		[HttpGet]
 		public IEnumerable<Estatistica> Get(string nomeInvestidor, string nomeCarteira, string ativos)
 		{
+			var a = FinanceiroService.ObterCotacoes("FVPQ11");
+
 			var investidor = Seguranca.Autenticar(nomeInvestidor, "123456").Result;
 			var carteira = investidor.ObterCarteira(nomeCarteira);
 			_investidorService.Preencher(carteira).Wait();

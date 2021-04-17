@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+		body, video, .blur {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+			padding: 0px;
+			border: 0px;
+			opacity: 1;
+		}
+
+		body {
+			width: 1920px;
+			height: 1080px;
+			overflow: hidden;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		.blur {
+			width: 1920px;
+			height: 1080px;
+			background-color: rgba(2, 176, 173, 0.3);
+		}
+
+		* {
+			font-family: Roboto, sans-serif;
+		}
+
+		.form {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			/*
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			*/
+			display: grid;
+			grid-template-columns: 1fr;
+		}
+
+		.form-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			color: white;
+			font-size: 22px;
+			font-weight: bold;
+			height: 40px;
+		}
+
+		.form-fields {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.form-label-field, form-footer {
+			height: 55px;
+			margin: 10px;
+		}
+
+		.form-label {
+			display: block;
+			height: 20px;
+			color: white;
+		}
+
+		.form-input {
+			width: 300px;
+			height: 30px;
+		}
+
+		.form-input-submit {
+			width: 120px;
+			height: 35px;
+		}
+
+		.form-footer {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		@media (max-width: 750px) {
+			.form-fields {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<video loop="" muted="" role="presentation" preload="auto" playsinline="" crossorigin="anonymous" autoplay="" src="https://video.wixstatic.com/video/11062b_03c50f8fe4a34cc297a984e483a282ef/1080p/mp4/file.mp4"></video>
+	<div class="blur"></div>
+	<form class="form" id="form" name="form" method="post">
+		<div class="form-header">Aproveite essa oportunidade!</div>
+		<div class="form-fields">
+			<div class="form-label-field">
+				<label class="form-label">Qual o seu nome?</label>
+				<input class="form-input" type="text" id="nome" name="nome" placeholder="Informe seu nome e sobrenome..." />
+			</div>
+			<div class="form-label-field">
+				<label class="form-label">E o seu celular (c/ DDD)?</label>
+				<input class="form-input" type="text" id="celular" name="celular" placeholder="(XX) 9 9999-9999" />
+			</div>
+			<div class="form-label-field">
+				<label class="form-label">E o seu e-mail?</label>
+				<input class="form-input" type="email" id="email" name="email" placeholder="Informe seu melhor e-mail para contato..." />
+			</div>
+			<div class="form-footer">
+				<input class="form-input-submit" type="submit" id="enviar" name="enviar" value="Eu Quero!" />
+			</div>
+		</div>
+	</form>
+</body>
+</html>

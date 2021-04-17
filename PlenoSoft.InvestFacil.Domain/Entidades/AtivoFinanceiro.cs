@@ -14,6 +14,7 @@ namespace PlenoSoft.InvestFacil.Domain.Entidades
 
 		public string Descricao { get; set; }
 		public decimal VPA { get; set; }
+		public decimal Cotacao { get; set; }
 
 		public DateTime DataHoraInclusao { get; set; }
 		public DateTime UltimaAlteracao { get; set; }

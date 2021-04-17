@@ -53,7 +53,7 @@ namespace PlenoSoft.InvestFacil.Domain.Entidades
 		public IEnumerable<Estatistica> ObterEstatisticas(params string[] ativos)
 		{
 			var lancamentos = (ativos?.Any()).GetValueOrDefault() ? Lancamentos.Where(l => ativos.Contains(l.Papel)) : Lancamentos;
-			var lancamentosAgrupados = lancamentos.GroupBy(l => l.Papel);
+			var lancamentosAgrupados = lancamentos.GroupBy(l => l.AtivoFinanceiro);
 			return lancamentosAgrupados.Select(g => new Estatistica(g.Key, g));
 		}
 	}
