@@ -1,18 +1,16 @@
 ﻿using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PlenoSoft.InvestFacil.Application.Services
 {
 	/// <summary>
-	/// https://arquivos.b3.com.br/apinegocios/ticker/FVPQ11/2020-05-05
+	/// https://arquivos.b3.com.br/apinegocios/ticker/FVPQ11/2021-04-05
 	/// http://cotacao.b3.com.br/mds/api/v1/DailyFluctuationHistory/FVPQ11
 	/// https://fiis.com.br/knri/cotacoes/?periodo=12+months
 	/// https://chart.fundsexplorer.com.br/scpf/cotacoes/?periodo=12+months
